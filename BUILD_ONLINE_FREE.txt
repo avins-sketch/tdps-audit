@@ -1,0 +1,48 @@
+================================================================
+  GET YOUR APK IN 10 MINUTES - 3 FREE OPTIONS
+  No Android Studio needed on your laptop
+================================================================
+
+YOUR PROJECT IS READY. Just use ONE of these free services:
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPTION 1: GITHUB ACTIONS (FREE - Easiest, 10 min)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+This builds your APK for free on Microsoft's servers.
+
+STEP 1: Create free account at https://github.com
+STEP 2: Click "+" (top right) → "New repository"
+        Name: tdps-audit  → Click "Create repository"
+STEP 3: Click "uploading an existing file"
+        Upload ALL files from the ZIP (drag and drop)
+        Click "Commit changes"
+STEP 4: The file .github/workflows/build.yml is already
+        included in your ZIP - it will auto-build the APK!
+STEP 5: Click "Actions" tab → Watch it build (5 min)
+STEP 6: Click the completed build → Download "app-debug"
+        → You get your APK!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPTION 2: APPETIZE.IO / APPILIX.COM (FREE - 5 min)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 1: Go to https://www.appilix.com
+STEP 2: Enter your Netlify URL (e.g. https://abc.netlify.app)
+STEP 3: Fill in app name: TDPS BE Audit
+STEP 4: Click Generate APK
+STEP 5: Download APK
+NOTE: This creates a proper WebView APK with permissions
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+OPTION 3: GONATIVE.IO (FREE TRIAL - 5 min)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP 1: Go to https://gonative.io
+STEP 2: Enter your Netlify URL
+STEP 3: Enable Camera + Microphone in their settings
+STEP 4: Build & Download APK
+NOTE: GoNative properly declares permissions in manifest
+
+================================================================
+  IMPORTANT: USE YOUR V3 HTML (TDPS_BE_Audit_APP_v3.html)
+  Upload it to Netlify first: https://app.netlify.com/drop
+  Then use the Netlify URL with options 2 or 3 above
+================================================================

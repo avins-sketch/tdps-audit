@@ -1,0 +1,61 @@
+================================================================
+  TDPS BE AUDIT - BUILD YOUR APK (Step by Step)
+  This is a proper Android Studio project - NOT a PWABuilder APK
+  Camera & Microphone permissions are GUARANTEED to work
+================================================================
+
+WHAT YOU NEED (all free):
+1. Android Studio: https://developer.android.com/studio
+2. Java JDK 17:    https://adoptium.net  (choose "Temurin 17 LTS")
+
+STEP-BY-STEP:
+
+STEP 1: Install JDK 17
+  - Go to https://adoptium.net
+  - Click "Latest LTS Release" (Temurin 17)
+  - Download Windows installer (.msi)
+  - Run it, click Next, Next, Finish
+
+STEP 2: Install Android Studio
+  - Go to https://developer.android.com/studio
+  - Click "Download Android Studio"
+  - Run installer, click Next all the way through
+  - When it opens, click "Standard" setup and wait for downloads (~10 min)
+
+STEP 3: Open This Project
+  - Open Android Studio
+  - Click "Open" (NOT "New Project")
+  - Navigate to THIS folder (TDPSAuditAndroid) and click OK
+  - Wait for Gradle sync to finish (bottom progress bar - 3-5 min)
+  - If it asks to update Gradle, click "Update"
+
+STEP 4: Build the APK
+  - In the menu bar: Build → Build Bundle(s)/APK(s) → Build APK(s)
+  - Wait 2-3 minutes
+  - A popup appears: "APK(s) generated successfully"
+  - Click "locate" in that popup
+
+STEP 5: Find your APK
+  - It will be in: TDPSAuditAndroid\app\build\outputs\apk\debug\app-debug.apk
+
+STEP 6: Install on your phone
+  - Copy app-debug.apk to your phone (via USB, WhatsApp, email)
+  - On phone: tap the APK file
+  - If blocked: Settings → Security → Install Unknown Apps → Allow
+  - Tap Install
+  - OPEN the app → it will ask Camera + Microphone permission → tap ALLOW
+
+================================================================
+  PERMISSIONS THAT WILL NOW APPEAR IN PHONE SETTINGS:
+  ✓ Camera
+  ✓ Microphone  
+  ✓ Storage
+  (These are declared in AndroidManifest.xml properly)
+================================================================
+
+TROUBLE? The most common issues:
+- "Gradle sync failed" → File → Invalidate Caches → Restart
+- "SDK not found" → Android Studio → SDK Manager → install API 34
+- "JDK not found" → File → Project Structure → SDK Location → set JDK path
+
+================================================================
