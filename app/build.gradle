@@ -4,20 +4,21 @@ plugins {
 
 android {
     namespace 'com.tdps.beaudit'
-    compileSdkVersion 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.tdps.beaudit"
-        minSdkVersion 21
-        targetSdkVersion 33
+        minSdk 21
+        targetSdk 34
         versionCode 1
         versionName "1.0"
     }
 
     buildTypes {
-        debug { debuggable true }
+        release {
+            minifyEnabled false
+        }
     }
-
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
