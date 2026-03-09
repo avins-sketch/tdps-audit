@@ -9,17 +9,15 @@
 <meta name="apple-mobile-web-app-title" content="TDPS Audit"/>
 <link rel="manifest" href="manifest.json"/>
 <title>TDPS BE Audit</title>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@700;900&display=swap" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;background:#080c18;font-family:"Rajdhani",sans-serif;overflow-x:hidden;}
+html,body{height:100%;background:#080c18;font-family:sans-serif;overflow-x:hidden;}
 :root{--orange:#FF6B00;--cyan:#00C8FF;--panel:rgba(8,16,34,0.92);--border:rgba(0,200,255,0.18);}
 textarea::placeholder{color:rgba(255,255,255,0.18);}
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-thumb{background:rgba(0,200,255,0.3);border-radius:2px;}
-button{cursor:pointer;font-family:"Rajdhani",sans-serif;}
+button{cursor:pointer;font-family:sans-serif;}
 .screen{display:none;min-height:100vh;position:relative;background:linear-gradient(135deg,#080c18 0%,#0d1528 50%,#0a1a2e 100%);}
 .screen.active{display:flex;flex-direction:column;align-items:center;}
 .grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(0,200,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,200,255,0.03) 1px,transparent 1px);background-size:44px 44px;}
@@ -28,14 +26,14 @@ button{cursor:pointer;font-family:"Rajdhani",sans-serif;}
 .topbar{position:fixed;top:0;left:0;right:0;max-width:480px;z-index:100;background:rgba(6,11,22,0.97);border-bottom:1px solid var(--border);backdrop-filter:blur(18px);display:flex;align-items:center;justify-content:space-between;padding:10px 16px;margin:0 auto;}
 .topbar-logo{display:flex;align-items:center;gap:9px;}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 8px var(--orange);animation:pulse 1.5s infinite;}
-.topbar-title{color:var(--orange);font-family:"Orbitron",sans-serif;font-weight:800;font-size:11px;letter-spacing:2.5px;}
+.topbar-title{color:var(--orange);font-family:monospace;font-weight:800;font-size:11px;letter-spacing:2.5px;}
 .topbar-right{display:flex;align-items:center;gap:10px;}
 .badge{background:rgba(0,200,255,0.09);border:1px solid rgba(0,200,255,0.28);border-radius:7px;padding:3px 11px;color:var(--cyan);font-size:11px;font-weight:700;letter-spacing:1.5px;display:none;}
 .comp-btn{background:linear-gradient(135deg,rgba(0,200,255,0.7),var(--cyan));border:1.5px solid var(--cyan);border-radius:9px;color:#fff;font-weight:800;font-size:11px;letter-spacing:2px;padding:8px 16px;text-transform:uppercase;box-shadow:0 0 18px rgba(0,200,255,0.35);display:none;}
 .comp-btn:active{transform:scale(0.96);}
 .panel{background:var(--panel);border:1px solid var(--border);border-radius:16px;box-shadow:0 0 30px rgba(0,200,255,0.07);backdrop-filter:blur(14px);padding:18px;}
 .content{position:relative;z-index:1;width:100%;max-width:480px;padding:76px 18px 30px;flex:1;}
-.gbtn{border-radius:11px;font-family:"Rajdhani",sans-serif;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;border:1.5px solid transparent;transition:all 0.12s;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 28px;font-size:14px;}
+.gbtn{border-radius:11px;font-family:sans-serif;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;border:1.5px solid transparent;transition:all 0.12s;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px 28px;font-size:14px;}
 .gbtn:active{transform:scale(0.96);}
 .gbtn:disabled{opacity:0.4;cursor:not-allowed;}
 .btn-orange{background:linear-gradient(135deg,rgba(255,107,0,0.8),#FF6B00);border-color:var(--orange);color:#fff;box-shadow:0 0 20px rgba(255,107,0,0.38);}
@@ -54,7 +52,7 @@ button{cursor:pointer;font-family:"Rajdhani",sans-serif;}
 .home-content.show{opacity:1;transform:translateY(0);}
 .waveform{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:56px;margin-bottom:14px;}
 .wbar{width:4px;border-radius:2px;background:rgba(255,255,255,0.09);transition:height 0.06s;}
-.timer{font-family:"Orbitron",monospace;font-size:30px;font-weight:700;letter-spacing:5px;color:rgba(255,255,255,0.28);text-align:center;margin-bottom:5px;}
+.timer{font-family:monospace,monospace;font-size:30px;font-weight:700;letter-spacing:5px;color:rgba(255,255,255,0.28);text-align:center;margin-bottom:5px;}
 .timer.active{color:var(--cyan);}
 .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(80px);background:rgba(8,16,34,0.97);border:1px solid var(--cyan);border-radius:11px;padding:12px 24px;color:var(--cyan);font-weight:700;font-size:13px;letter-spacing:1.5px;z-index:999;transition:transform 0.3s ease;pointer-events:none;white-space:nowrap;}
 .toast.show{transform:translateX(-50%) translateY(0);}
@@ -75,7 +73,7 @@ button{cursor:pointer;font-family:"Rajdhani",sans-serif;}
 <body>
 <div class="grid-bg"></div><div class="glow1"></div><div class="glow2"></div>
 <div class="toast" id="toast"></div>
-<div class="loader" id="loader"><div class="spinner"></div><div style="color:var(--cyan);font-family:Orbitron,sans-serif;font-size:13px;letter-spacing:3px;" id="loader-txt">PROCESSING...</div></div>
+<div class="loader" id="loader"><div class="spinner"></div><div style="color:var(--cyan);font-family:monospace;font-size:13px;letter-spacing:3px;" id="loader-txt">PROCESSING...</div></div>
 
 <!-- HOME -->
 <div class="screen active" id="screen-home">
@@ -89,7 +87,7 @@ button{cursor:pointer;font-family:"Rajdhani",sans-serif;}
       <div style="position:absolute;inset:0;border-radius:22px;box-shadow:inset 0 0 20px rgba(0,0,0,0.2);"></div>
     </div>
     <div style="text-align:center;">
-      <div style="color:#fff;font-family:Orbitron,sans-serif;font-weight:900;font-size:22px;letter-spacing:5px;text-shadow:0 0 22px rgba(255,107,0,0.5);">BUSINESS EXCELLENCE</div>
+      <div style="color:#fff;font-family:monospace;font-weight:900;font-size:22px;letter-spacing:5px;text-shadow:0 0 22px rgba(255,107,0,0.5);">BUSINESS EXCELLENCE</div>
       <div style="color:rgba(0,200,255,0.75);font-weight:600;font-size:12px;letter-spacing:7px;margin-top:8px;">AUDIT MANAGEMENT SYSTEM</div>
     </div>
     <div style="display:flex;gap:13px;">
@@ -112,7 +110,7 @@ button{cursor:pointer;font-family:"Rajdhani",sans-serif;}
   <div class="content fade-up">
     <div style="text-align:center;margin-bottom:22px;">
       <div style="color:rgba(0,200,255,0.55);font-size:10px;letter-spacing:5px;margin-bottom:5px;" id="cam-eye">OBSERVATION #1</div>
-      <div style="color:#fff;font-family:Orbitron,sans-serif;font-weight:800;font-size:18px;letter-spacing:3.5px;">CAPTURE EVIDENCE</div>
+      <div style="color:#fff;font-family:monospace;font-weight:800;font-size:18px;letter-spacing:3.5px;">CAPTURE EVIDENCE</div>
     </div>
     <div class="panel" style="margin-bottom:16px;padding:10px;">
       <div id="cam-ph" style="width:100%;aspect-ratio:4/3;background:rgba(0,0,0,0.45);border-radius:11px;border:2px dashed rgba(0,200,255,0.18);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
@@ -132,7 +130,7 @@ button{cursor:pointer;font-family:"Rajdhani",sans-serif;}
       <canvas id="cam-cvs" style="display:none;"></canvas>
       <div id="cam-err" style="display:none;color:#ffaa44;font-size:12px;padding:10px;background:rgba(255,90,0,0.08);border:1px solid rgba(255,90,0,0.2);border-radius:8px;margin-bottom:10px;line-height:1.6;"></div>
       <div id="cam-open-ui" style="margin-top:14px;">
-        <label style="display:flex;align-items:center;justify-content:center;gap:8px;border-radius:11px;font-family:Rajdhani,sans-serif;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1.5px solid var(--cyan);background:linear-gradient(135deg,rgba(0,200,255,0.8),var(--cyan));color:#fff;box-shadow:0 0 22px rgba(0,200,255,0.35);padding:14px 18px;font-size:14px;cursor:pointer;width:100%;text-align:center;margin-bottom:10px;">
+        <label style="display:flex;align-items:center;justify-content:center;gap:8px;border-radius:11px;font-family:sans-serif;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1.5px solid var(--cyan);background:linear-gradient(135deg,rgba(0,200,255,0.8),var(--cyan));color:#fff;box-shadow:0 0 22px rgba(0,200,255,0.35);padding:14px 18px;font-size:14px;cursor:pointer;width:100%;text-align:center;margin-bottom:10px;">
           &#128247; TAKE PHOTO (OPENS CAMERA)
           <input type="file" id="cam-file-input" accept="image/*" capture="environment" onchange="handleFileCapture(event)" style="display:none;"/>
         </label>
@@ -166,7 +164,7 @@ button{cursor:pointer;font-family:"Rajdhani",sans-serif;}
   <div class="content fade-up">
     <div style="text-align:center;margin-bottom:18px;">
       <div style="color:rgba(0,200,255,0.55);font-size:10px;letter-spacing:5px;margin-bottom:5px;" id="choice-eye">OBSERVATION #1</div>
-      <div style="color:#fff;font-family:Orbitron,sans-serif;font-weight:800;font-size:18px;letter-spacing:3.5px;">LOG OBSERVATION</div>
+      <div style="color:#fff;font-family:monospace;font-weight:800;font-size:18px;letter-spacing:3.5px;">LOG OBSERVATION</div>
     </div>
     <div class="panel" style="margin-bottom:16px;padding:9px;">
       <div style="position:relative;border-radius:9px;overflow:hidden;">
@@ -179,14 +177,14 @@ button{cursor:pointer;font-family:"Rajdhani",sans-serif;}
       <button class="choice-card" onclick="goText()">
         <div style="display:flex;align-items:center;gap:14px;">
           <div style="font-size:30px;">&#9000;&#65039;</div>
-          <div><div style="color:var(--orange);font-family:Orbitron,sans-serif;font-weight:800;font-size:14px;letter-spacing:2px;">TYPE OBSERVATION</div><div style="color:rgba(255,255,255,0.38);font-size:11px;margin-top:3px;">Write up to 1500 words</div></div>
+          <div><div style="color:var(--orange);font-family:monospace;font-weight:800;font-size:14px;letter-spacing:2px;">TYPE OBSERVATION</div><div style="color:rgba(255,255,255,0.38);font-size:11px;margin-top:3px;">Write up to 1500 words</div></div>
           <div style="margin-left:auto;color:rgba(255,107,0,0.5);font-size:22px;">&#8250;</div>
         </div>
       </button>
       <button class="choice-card cyan" onclick="goVoice()">
         <div style="display:flex;align-items:center;gap:14px;">
           <div style="font-size:30px;">&#127897;&#65039;</div>
-          <div><div style="color:var(--cyan);font-family:Orbitron,sans-serif;font-weight:800;font-size:14px;letter-spacing:2px;">RECORD VOICE</div><div style="color:rgba(255,255,255,0.38);font-size:11px;margin-top:3px;">Speak your observation</div></div>
+          <div><div style="color:var(--cyan);font-family:monospace;font-weight:800;font-size:14px;letter-spacing:2px;">RECORD VOICE</div><div style="color:rgba(255,255,255,0.38);font-size:11px;margin-top:3px;">Speak your observation</div></div>
           <div style="margin-left:auto;color:rgba(0,200,255,0.5);font-size:22px;">&#8250;</div>
         </div>
       </button>
@@ -202,13 +200,13 @@ button{cursor:pointer;font-family:"Rajdhani",sans-serif;}
   </div>
   <div class="content fade-up">
     <div style="text-align:center;margin-bottom:16px;">
-      <div style="color:var(--orange);font-family:Orbitron,sans-serif;font-weight:800;font-size:18px;letter-spacing:3px;">TYPE OBSERVATION</div>
+      <div style="color:var(--orange);font-family:monospace;font-weight:800;font-size:18px;letter-spacing:3px;">TYPE OBSERVATION</div>
     </div>
     <div class="panel" style="margin-bottom:13px;padding:9px;">
       <img id="text-img" src="" alt="" style="width:100%;border-radius:8px;max-height:130px;object-fit:cover;display:block;"/>
     </div>
     <div class="panel">
-      <textarea id="txtarea" style="width:100%;min-height:175px;background:rgba(0,0,0,0.38);border:1px solid rgba(0,200,255,0.17);border-radius:9px;color:#fff;font-family:Rajdhani,sans-serif;font-size:14px;line-height:1.6;padding:13px;resize:vertical;outline:none;" placeholder="Enter your audit observation here..." oninput="onTxtIn()"></textarea>
+      <textarea id="txtarea" style="width:100%;min-height:175px;background:rgba(0,0,0,0.38);border:1px solid rgba(0,200,255,0.17);border-radius:9px;color:#fff;font-family:sans-serif;font-size:14px;line-height:1.6;padding:13px;resize:vertical;outline:none;" placeholder="Enter your audit observation here..." oninput="onTxtIn()"></textarea>
       <div style="display:flex;align-items:center;gap:10px;margin-top:9px;">
         <span style="font-size:11px;color:rgba(255,255,255,0.28);flex-shrink:0;" id="wc-lbl">0 / 1500 words</span>
         <div style="flex:1;height:2.5px;background:rgba(255,255,255,0.08);border-radius:2px;overflow:hidden;"><div id="wc-bar" style="height:100%;width:0%;background:var(--cyan);border-radius:2px;transition:width 0.2s;"></div></div>
@@ -226,7 +224,7 @@ button{cursor:pointer;font-family:"Rajdhani",sans-serif;}
   </div>
   <div class="content fade-up">
     <div style="text-align:center;margin-bottom:16px;">
-      <div style="color:var(--cyan);font-family:Orbitron,sans-serif;font-weight:800;font-size:18px;letter-spacing:3px;">VOICE OBSERVATION</div>
+      <div style="color:var(--cyan);font-family:monospace;font-weight:800;font-size:18px;letter-spacing:3px;">VOICE OBSERVATION</div>
     </div>
     <div class="panel" style="margin-bottom:13px;padding:9px;">
       <img id="voice-img" src="" alt="" style="width:100%;border-radius:8px;max-height:120px;object-fit:cover;display:block;"/>
@@ -239,7 +237,7 @@ button{cursor:pointer;font-family:"Rajdhani",sans-serif;}
         <div style="color:rgba(0,200,255,0.55);font-size:10px;letter-spacing:3px;margin-bottom:5px;">LIVE TRANSCRIPT</div>
         <div style="color:rgba(255,255,255,0.78);font-size:13px;line-height:1.55;" id="tr-txt"></div>
       </div>
-      <div id="sr-unavail-notice" style="display:none;background:rgba(255,107,0,0.08);border:1px solid rgba(255,107,0,0.22);border-radius:9px;padding:11px;margin-bottom:12px;"><div style="color:var(--orange);font-size:11px;letter-spacing:1.5px;margin-bottom:7px;font-weight:700;">&#9888; AUTO-TRANSCRIPTION UNAVAILABLE</div><div style="color:rgba(255,255,255,0.5);font-size:11px;line-height:1.5;margin-bottom:8px;">Audio will be saved. Type your observation below:</div><textarea id="manual-transcript" style="width:100%;background:rgba(0,0,0,0.38);border:1px solid rgba(0,200,255,0.2);border-radius:9px;color:#fff;font-family:Rajdhani,sans-serif;font-size:14px;line-height:1.6;padding:11px;outline:none;min-height:80px;resize:none;" placeholder="Type your spoken observation here..."></textarea></div>
+      <div id="sr-unavail-notice" style="display:none;background:rgba(255,107,0,0.08);border:1px solid rgba(255,107,0,0.22);border-radius:9px;padding:11px;margin-bottom:12px;"><div style="color:var(--orange);font-size:11px;letter-spacing:1.5px;margin-bottom:7px;font-weight:700;">&#9888; AUTO-TRANSCRIPTION UNAVAILABLE</div><div style="color:rgba(255,255,255,0.5);font-size:11px;line-height:1.5;margin-bottom:8px;">Audio will be saved. Type your observation below:</div><textarea id="manual-transcript" style="width:100%;background:rgba(0,0,0,0.38);border:1px solid rgba(0,200,255,0.2);border-radius:9px;color:#fff;font-family:sans-serif;font-size:14px;line-height:1.6;padding:11px;outline:none;min-height:80px;resize:none;" placeholder="Type your spoken observation here..."></textarea></div>
       <div id="vbtn-start"><button class="gbtn btn-cyan" onclick="startRec()">&#127897;&#65039; START RECORDING</button></div>
       <div id="vbtn-stop" style="display:none;"><button class="gbtn btn-red" onclick="stopRec()">&#9632; STOP RECORDING</button></div>
       <div id="vbtn-done" style="display:none;flex-direction:column;gap:9px;">
@@ -256,7 +254,7 @@ button{cursor:pointer;font-family:"Rajdhani",sans-serif;}
   <div class="content fade-up" style="padding-top:30px;">
     <div style="text-align:center;margin-bottom:26px;">
       <div style="font-size:52px;margin-bottom:10px;">&#9989;</div>
-      <div style="color:var(--cyan);font-family:Orbitron,sans-serif;font-weight:900;font-size:22px;letter-spacing:4px;">AUDIT COMPLETE</div>
+      <div style="color:var(--cyan);font-family:monospace;font-weight:900;font-size:22px;letter-spacing:4px;">AUDIT COMPLETE</div>
       <div style="color:rgba(255,255,255,0.3);font-size:11px;letter-spacing:3px;margin-top:5px;" id="cmp-id"></div>
     </div>
     <div style="display:flex;gap:11px;margin-bottom:20px;" id="stat-row"></div>
@@ -411,18 +409,43 @@ async function startRec(){
   A.transcript='';A.audioChunks=[];A.secs=0;
   document.getElementById('vtimer').className='timer active';
   document.getElementById('rec-ind').textContent='● RECORDING';
-  const SRX=window.SpeechRecognition||window.webkitSpeechRecognition;
+  // Speech recognition - works on Android Chrome/WebView with internet
   document.getElementById('sr-unavail-notice').style.display='none';
+  const SRX=window.SpeechRecognition||window.webkitSpeechRecognition||null;
   if(SRX){
     try{
-      const r=new SRX();r.continuous=true;r.interimResults=true;r.lang='en-IN';r.maxAlternatives=1;
-      let fin='';
-      r.onresult=e=>{let intr='';for(let i=e.resultIndex;i<e.results.length;i++){if(e.results[i].isFinal)fin+=e.results[i][0].transcript+' ';else intr+=e.results[i][0].transcript;}A.transcript=fin+intr;document.getElementById('tr-box').style.display='block';document.getElementById('tr-txt').textContent=A.transcript;};
-      r.onerror=ev=>{if(ev.error==='not-allowed'||ev.error==='service-not-allowed')document.getElementById('sr-unavail-notice').style.display='block';};
-      r.onend=()=>{if(A.mr&&A.mr.state==='recording'){try{r.start();}catch(e2){}}};
-      r.start();A.sr=r;
-    }catch(e){document.getElementById('sr-unavail-notice').style.display='block';}
-  }else{document.getElementById('sr-unavail-notice').style.display='block';}
+      const r=new SRX();
+      r.continuous=true;r.interimResults=true;
+      r.lang='en-IN';r.maxAlternatives=1;
+      let fin='';let restartTimer=null;
+      r.onresult=e=>{
+        let intr='';
+        for(let i=e.resultIndex;i<e.results.length;i++){
+          if(e.results[i].isFinal){fin+=e.results[i][0].transcript+' ';}
+          else{intr+=e.results[i][0].transcript;}
+        }
+        A.transcript=fin+intr;
+        document.getElementById('tr-box').style.display='block';
+        document.getElementById('tr-txt').textContent=A.transcript;
+      };
+      r.onerror=ev=>{
+        if(ev.error==='not-allowed'||ev.error==='service-not-allowed'){
+          document.getElementById('sr-unavail-notice').style.display='block';
+        }
+      };
+      r.onend=()=>{
+        // Auto-restart to handle Android 60s limit
+        if(A.mr&&A.mr.state==='recording'){
+          restartTimer=setTimeout(()=>{try{r.start();}catch(e2){}},300);
+        }
+      };
+      r.start();A.sr=r;A.srRestartTimer=restartTimer;
+    }catch(e){
+      document.getElementById('sr-unavail-notice').style.display='block';
+    }
+  }else{
+    document.getElementById('sr-unavail-notice').style.display='block';
+  }
   function getMime2(){const tt=['audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus','audio/mp4'];for(const x of tt){if(typeof MediaRecorder!=='undefined'&&MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(x))return x;}return '';}
   try{
     const s=await navigator.mediaDevices.getUserMedia({audio:true,video:false});
@@ -472,119 +495,251 @@ function completeAudit(){
 function renderComplete(){
   document.getElementById('cmp-id').textContent='ID: '+A.id+' · '+new Date().toLocaleDateString();
   const o=A.obs;const typed=o.filter(x=>x.inputType==='text').length;const voiced=o.filter(x=>x.inputType==='voice').length;
-  document.getElementById('stat-row').innerHTML=[{l:'TOTAL',v:o.length,c:'var(--cyan)',r:'0,200,255'},{l:'TYPED',v:typed,c:'var(--orange)',r:'255,107,0'},{l:'VOICE',v:voiced,c:'#a855f7',r:'168,85,247'}].map(s=>'<div style="flex:1;text-align:center;padding:14px 8px;background:rgba('+s.r+',0.07);border:1px solid rgba('+s.r+',0.2);border-radius:11px;"><div style="font-family:Orbitron,sans-serif;font-weight:900;font-size:26px;color:'+s.c+'">'+s.v+'</div><div style="color:rgba(255,255,255,0.4);font-size:10px;letter-spacing:2.5px;margin-top:3px;">'+s.l+'</div></div>').join('');
+  document.getElementById('stat-row').innerHTML=[{l:'TOTAL',v:o.length,c:'var(--cyan)',r:'0,200,255'},{l:'TYPED',v:typed,c:'var(--orange)',r:'255,107,0'},{l:'VOICE',v:voiced,c:'#a855f7',r:'168,85,247'}].map(s=>'<div style="flex:1;text-align:center;padding:14px 8px;background:rgba('+s.r+',0.07);border:1px solid rgba('+s.r+',0.2);border-radius:11px;"><div style="font-family:monospace;font-weight:900;font-size:26px;color:'+s.c+'">'+s.v+'</div><div style="color:rgba(255,255,255,0.4);font-size:10px;letter-spacing:2.5px;margin-top:3px;">'+s.l+'</div></div>').join('');
   document.getElementById('obs-log').innerHTML=o.map(ob=>'<div class="obs-row"><img class="obs-thumb" src="'+ob.photo+'"/><div style="flex:1;min-width:0;"><div style="display:flex;gap:7px;margin-bottom:3px;flex-wrap:wrap;align-items:center;"><span class="otag '+(ob.inputType==='text'?'otag-t':'otag-v')+'">'+(ob.inputType==='text'?'TYPED':'VOICE')+'</span><span style="color:rgba(255,255,255,0.28);font-size:9px;">'+ob.timestamp+'</span></div><div class="excerpt">'+(ob.text||'(voice recorded)')+'</div></div></div>').join('');
 }
 
 // ============================================================
-// EXCEL WITH EMBEDDED PHOTOS
+// INLINE XLSX BUILDER (no external library needed)
 // ============================================================
-async function buildXLSX(){
-  const wb = XLSX.utils.book_new();
-  const o = A.obs;
+function xlsxEscape(v){
+  if(v===null||v===undefined)return '';
+  const s=String(v);
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
 
-  // --- SUMMARY SHEET ---
-  const sumWS = XLSX.utils.aoa_to_sheet([
-    ['TDPS BE AUDIT REPORT'],
-    [],
-    ['Audit ID', A.id],
-    ['Date', new Date().toLocaleString()],
-    ['Total Observations', o.length],
-    ['Typed', o.filter(x=>x.inputType==='text').length],
-    ['Voice', o.filter(x=>x.inputType==='voice').length],
-    [],
-    ['Generated by', 'TDPS Business Excellence Audit System']
-  ]);
-  sumWS['!cols']=[{wch:25},{wch:55}];
-  XLSX.utils.book_append_sheet(wb, sumWS, 'Summary');
+function buildXLSXBase64(){
+  const o=A.obs;
+  // Build simple xlsx with 2 sheets using pure JS
+  // Sheet 1: Summary
+  const sumRows=[
+    ['TDPS BE AUDIT REPORT',''],
+    ['',''],
+    ['Audit ID',A.id],
+    ['Date',new Date().toLocaleString()],
+    ['Total Observations',o.length],
+    ['Typed',o.filter(x=>x.inputType==='text').length],
+    ['Voice',o.filter(x=>x.inputType==='voice').length],
+    ['',''],
+    ['Generated by','TDPS Business Excellence Audit System']
+  ];
+  // Sheet 2: Observations
+  const obsRows=[['#','Timestamp','Type','Observation / Transcript','Photo File','Voice File']];
+  o.forEach((x,i)=>{obsRows.push([i+1,x.timestamp,x.inputType==='text'?'Typed':'Voice',x.text||'(Voice recorded)',x.photoName,x.audioName||'']);});
 
-  // --- OBSERVATIONS SHEET ---
-  // Headers
-  const headers = ['#', 'Timestamp', 'Input Type', 'Observation / Transcript', 'Photo File', 'Voice File'];
-  const rows = [headers];
-  o.forEach((x,i) => {
-    rows.push([
-      i+1,
-      x.timestamp,
-      x.inputType==='text' ? 'Typed' : 'Voice Recorded',
-      x.text || '(Voice recorded - see audio file)',
-      x.photoName,
-      x.audioName || ''
-    ]);
-  });
-
-  const obsWS = XLSX.utils.aoa_to_sheet(rows);
-  obsWS['!cols'] = [{wch:5},{wch:22},{wch:15},{wch:80},{wch:30},{wch:30}];
-
-  // Set row heights to fit images (120px ~ 90pt)
-  obsWS['!rows'] = [{hpt:20}]; // header row
-  o.forEach(() => obsWS['!rows'].push({hpt:90}));
-
-  XLSX.utils.book_append_sheet(wb, obsWS, 'Observations');
-
-  // --- Embed images into Observations sheet ---
-  // We use the drawing XML approach via SheetJS community workaround
-  // Convert each photo dataURL to base64 and add as image
-  if (!wb.Sheets['Observations']['!images']) {
-    wb.Sheets['Observations']['!images'] = [];
-  }
-
-  for (let i=0; i<o.length; i++) {
-    const obs = o[i];
-    if (!obs.photo) continue;
-    // Extract base64 from dataURL
-    const b64 = obs.photo.split(',')[1];
-    // Add image to column E (index 4), row i+1 (0-indexed, skip header)
-    // Position: row i+2 (1-based, header is row 1), col 5 (E)
-    wb.Sheets['Observations']['!images'].push({
-      name: obs.photoName,
-      data: b64,
-      opts: {
-        base64: true
-      },
-      position: {
-        type: 'twoCellAnchor',
-        attrs: { editAs: 'oneCell' },
-        from: { col: 4, colOff: 5, row: i+1, rowOff: 5 },
-        to:   { col: 5, colOff: -5, row: i+2, rowOff: -5 }
-      }
+  function sheetXML(rows,name){
+    let xml='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>';
+    rows.forEach((row,ri)=>{
+      xml+='<row r="'+(ri+1)+'">';
+      row.forEach((cell,ci)=>{
+        const col=String.fromCharCode(65+ci);
+        const ref=col+(ri+1);
+        if(typeof cell==='number'){xml+='<c r="'+ref+'" t="n"><v>'+cell+'</v></c>';}
+        else{xml+='<c r="'+ref+'" t="inlineStr"><is><t>'+xlsxEscape(cell)+'</t></is></c>';}
+      });
+      xml+='</row>';
     });
+    xml+='</sheetData></worksheet>';
+    return xml;
   }
 
-  return wb;
+  const sum=sheetXML(sumRows,'Summary');
+  const obs=sheetXML(obsRows,'Observations');
+  const wb='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Summary" sheetId="1" r:id="rId1"/><sheet name="Observations" sheetId="2" r:id="rId2"/></sheets></workbook>';
+  const ct='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/worksheets/sheet2.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>';
+  const rels='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet2.xml"/></Relationships>';
+  const relsRoot='<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>';
+
+  // Build ZIP (XLSX is a ZIP)
+  const files={
+    '[Content_Types].xml':ct,
+    '_rels/.rels':relsRoot,
+    'xl/workbook.xml':wb,
+    'xl/_rels/workbook.xml.rels':rels,
+    'xl/worksheets/sheet1.xml':sum,
+    'xl/worksheets/sheet2.xml':obs
+  };
+  return buildZipBase64(files);
+}
+
+// ============================================================
+// INLINE ZIP BUILDER (pure JS, no library)
+// ============================================================
+function str2bytes(str){
+  const b=new Uint8Array(str.length);
+  for(let i=0;i<str.length;i++)b[i]=str.charCodeAt(i)&0xff;
+  return b;
+}
+function crc32(data){
+  let c=0xFFFFFFFF;
+  const t=new Uint32Array(256);
+  for(let i=0;i<256;i++){let v=i;for(let j=0;j<8;j++)v=(v&1)?0xEDB88320^(v>>>1):v>>>1;t[i]=v;}
+  for(let i=0;i<data.length;i++)c=t[(c^data[i])&0xFF]^(c>>>8);
+  return (c^0xFFFFFFFF)>>>0;
+}
+function u32le(n){return [n&0xFF,(n>>8)&0xFF,(n>>16)&0xFF,(n>>24)&0xFF];}
+function u16le(n){return [n&0xFF,(n>>8)&0xFF];}
+
+function buildZipBase64(files){
+  const entries=[];
+  let offset=0;
+  const parts=[];
+
+  for(const[name,content] of Object.entries(files)){
+    const nameBytes=str2bytes(name);
+    const dataBytes=typeof content==='string'?str2bytes(content):content;
+    const crc=crc32(dataBytes);
+    const size=dataBytes.length;
+    const localHeader=[
+      0x50,0x4B,0x03,0x04, // sig
+      0x14,0x00,           // version needed
+      0x00,0x00,           // flags
+      0x00,0x00,           // compression (stored)
+      0x00,0x00,           // mod time
+      0x00,0x00,           // mod date
+      ...u32le(crc),
+      ...u32le(size),
+      ...u32le(size),
+      ...u16le(nameBytes.length),
+      0x00,0x00,           // extra len
+      ...nameBytes
+    ];
+    parts.push(new Uint8Array(localHeader));
+    parts.push(dataBytes);
+    entries.push({name,nameBytes,crc,size,offset});
+    offset+=localHeader.length+size;
+  }
+
+  // Central directory
+  const cdParts=[];
+  for(const e of entries){
+    const cd=[
+      0x50,0x4B,0x01,0x02,
+      0x14,0x00,0x14,0x00,
+      0x00,0x00,0x00,0x00,
+      0x00,0x00,0x00,0x00,
+      ...u32le(e.crc),
+      ...u32le(e.size),
+      ...u32le(e.size),
+      ...u16le(e.nameBytes.length),
+      0x00,0x00,0x00,0x00,
+      0x00,0x00,0x00,0x00,
+      0x00,0x00,0x00,0x00,
+      ...u32le(e.offset),
+      ...e.nameBytes
+    ];
+    cdParts.push(new Uint8Array(cd));
+  }
+  const cdSize=cdParts.reduce((a,b)=>a+b.length,0);
+  const eocd=[
+    0x50,0x4B,0x05,0x06,
+    0x00,0x00,0x00,0x00,
+    ...u16le(entries.length),
+    ...u16le(entries.length),
+    ...u32le(cdSize),
+    ...u32le(offset),
+    0x00,0x00
+  ];
+
+  const all=[...parts,...cdParts,new Uint8Array(eocd)];
+  const total=all.reduce((a,b)=>a+b.length,0);
+  const buf=new Uint8Array(total);
+  let pos=0;
+  for(const p of all){buf.set(p,pos);pos+=p.length;}
+
+  // Convert to base64
+  let bin='';
+  for(let i=0;i<buf.length;i++)bin+=String.fromCharCode(buf[i]);
+  return btoa(bin);
+}
+
+// ============================================================
+// ANDROID-SAFE DOWNLOAD (works in WebView)
+// ============================================================
+function androidDownload(base64data,filename,mime){
+  try{
+    // Method 1: data URI (works in most Android WebViews)
+    const a=document.createElement('a');
+    a.href='data:'+mime+';base64,'+base64data;
+    a.download=filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    return true;
+  }catch(e){
+    try{
+      // Method 2: blob URL
+      const bytes=atob(base64data);
+      const arr=new Uint8Array(bytes.length);
+      for(let i=0;i<bytes.length;i++)arr[i]=bytes.charCodeAt(i);
+      const blob=new Blob([arr],{type:mime});
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a');
+      a.href=url;a.download=filename;
+      document.body.appendChild(a);a.click();
+      document.body.removeChild(a);
+      setTimeout(()=>URL.revokeObjectURL(url),3000);
+      return true;
+    }catch(e2){return false;}
+  }
 }
 
 async function dlExcel(){
-  loading('GENERATING EXCEL WITH PHOTOS...',true);
+  loading('GENERATING EXCEL...',true);
   try{
-    const wb = await buildXLSX();
-    XLSX.writeFile(wb,'TDPS_Audit_'+A.id+'_'+Date.now()+'.xlsx');
-    loading('',false);toast('📊 Excel with photos downloaded!');
-    const b=document.getElementById('dl-xls');b.textContent='✓ EXCEL DOWNLOADED';b.className='gbtn btn-green';
-  }catch(e){loading('',false);toast('Excel error: '+e.message);}
+    const b64=buildXLSXBase64();
+    const fname='TDPS_Audit_'+A.id+'_'+Date.now()+'.xlsx';
+    const ok=androidDownload(b64,fname,'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    loading('',false);
+    if(ok){toast('📊 Excel downloaded!');document.getElementById('dl-xls').textContent='✓ EXCEL DOWNLOADED';document.getElementById('dl-xls').className='gbtn btn-green';}
+    else{toast('Tap to save: '+fname);}
+  }catch(e){loading('',false);toast('Error: '+e.message);}
+}
+
+async function buildZipBlob(){
+  const o=A.obs;
+  const files={};
+  // Add photos
+  for(const x of o){
+    if(x.photoBlob){
+      const ab=await x.photoBlob.arrayBuffer();
+      files['photos/'+x.photoName]=new Uint8Array(ab);
+    }else if(x.photo){
+      const b64=x.photo.split(',')[1];
+      const bytes=atob(b64);const arr=new Uint8Array(bytes.length);
+      for(let i=0;i<bytes.length;i++)arr[i]=bytes.charCodeAt(i);
+      files['photos/'+x.photoName]=arr;
+    }
+    if(x.audioBlob&&x.audioName){
+      const ab=await x.audioBlob.arrayBuffer();
+      files['audio/'+x.audioName]=new Uint8Array(ab);
+    }
+  }
+  // Add Excel
+  const xlb64=buildXLSXBase64();
+  const xlbytes=atob(xlb64);
+  const xlarr=new Uint8Array(xlbytes.length);
+  for(let i=0;i<xlbytes.length;i++)xlarr[i]=xlbytes.charCodeAt(i);
+  files['TDPS_Audit_'+A.id+'.xlsx']=xlarr;
+  // Add summary text
+  const lines=['TDPS BE AUDIT REPORT','='.repeat(40),'Audit ID: '+A.id,'Date: '+new Date().toLocaleString(),'Total: '+o.length+' observations',''];
+  o.forEach((x,i)=>{lines.push('Observation #'+(i+1));lines.push('Time: '+x.timestamp);lines.push('Type: '+(x.inputType==='text'?'Typed':'Voice'));lines.push('Photo: '+x.photoName);if(x.audioName)lines.push('Audio: '+x.audioName);lines.push('Text: '+(x.text||'(see audio)'));lines.push('-'.repeat(40));lines.push('');});
+  files['audit_summary.txt']=str2bytes(lines.join('\n'));
+  return buildZipBase64(files);
 }
 
 async function dlZip(){
-  const btn=document.getElementById('dl-zip');btn.disabled=true;btn.textContent='BUILDING ZIP...';
+  const btn=document.getElementById('dl-zip');
+  btn.disabled=true;btn.textContent='BUILDING ZIP...';
   loading('BUILDING ZIP PACKAGE...',true);
   try{
-    const zip=new JSZip();const o=A.obs;
-    const pf=zip.folder('photos');const af=zip.folder('audio');
-    for(const x of o){
-      if(x.photoBlob)pf.file(x.photoName,x.photoBlob);
-      else if(x.photo){const r=await fetch(x.photo);pf.file(x.photoName,await r.blob());}
-      if(x.audioBlob&&x.audioName)af.file(x.audioName,x.audioBlob);
-    }
-    const wb = await buildXLSX();
-    const buf=XLSX.write(wb,{bookType:'xlsx',type:'array'});
-    zip.file('TDPS_Audit_'+A.id+'.xlsx',buf);
-    const lines=['TDPS BE AUDIT REPORT','='.repeat(50),'Audit ID: '+A.id,'Date: '+new Date().toLocaleString(),'Total: '+o.length+' observations',''];
-    o.forEach((x,i)=>{lines.push('Observation #'+(i+1));lines.push('Timestamp: '+x.timestamp);lines.push('Type: '+(x.inputType==='text'?'Typed':'Voice'));lines.push('Photo: '+x.photoName);if(x.audioName)lines.push('Audio: '+x.audioName);lines.push('Text: '+(x.text||'(see audio)'));lines.push('-'.repeat(50));lines.push('');});
-    zip.file('audit_summary.txt',lines.join('\n'));
-    const blob=await zip.generateAsync({type:'blob',compression:'DEFLATE',compressionOptions:{level:6}},(m)=>setLTxt('COMPRESSING '+Math.round(m.percent)+'%'));
-    const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='TDPS_Audit_'+A.id+'_Complete_'+Date.now()+'.zip';a.click();URL.revokeObjectURL(url);
-    loading('',false);toast('📦 Full ZIP downloaded!');
-    btn.textContent='✓ ZIP DOWNLOADED';btn.className='gbtn btn-green';btn.disabled=false;
+    const b64=await buildZipBlob();
+    const fname='TDPS_Audit_'+A.id+'_Complete_'+Date.now()+'.zip';
+    const ok=androidDownload(b64,fname,'application/zip');
+    loading('',false);
+    if(ok){toast('📦 ZIP downloaded!');btn.textContent='✓ ZIP DOWNLOADED';btn.className='gbtn btn-green';}
+    else{toast('Tap to save: '+fname);}
+    btn.disabled=false;
   }catch(e){loading('',false);toast('Error: '+e.message);btn.disabled=false;btn.textContent='📦 DOWNLOAD FULL REPORT + PHOTOS + AUDIO (ZIP)';}
 }
 
